@@ -1,0 +1,20 @@
+{% extends "base.twig" %}
+{% block content %}
+    <h2>Quelque Galeries publique</h2>
+    <div class="galerie-list">
+    {% if galeries is defined %}
+        {% for galerie in galeries %}
+            <div class="galerie-item">
+                <a href="/galerie/{{ galerie.id }}">
+                    <img class="thumbnail" src="{{ galerie.getThumbnail().url }}" alt="">
+                    <div class="info">
+                        <h3>{{ galerie.nom }}</h3>
+                        <p>Nombre de photo(s): {{ galerie.photoCount() }}</p>
+                        <p>Description: {{ galerie.description }}</p>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    {% endif %}
+    </div>
+{% endblock %}
