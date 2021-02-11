@@ -12,8 +12,9 @@
 <nav class="menu">
     <ul>
         <li><a href="/home">Home</a></li>
+        <li><a href="/exercises">Exercices</a></li>
         {% if session.user is defined %}
-            <li><a href="/galeries?share=checked&private=checked">Galeries</a></li>
+            <li><a href="/groups">Groupes</a></li>
             {% set user = session.user %}
             <li class="connection deroulant"><a href="#">{{ user.identifiant }}</a>
                 <ul class="sous">

@@ -36,13 +36,13 @@ class LoginAction extends Action
                 }
                 else {
                     $this->response->getBody()->write(
-                        $this->twig->render('Login.twig', ['message' => 'login or password invalid'])
+                        $this->twig->render('Login.twig', ['errorMessage' => 'login or password invalid'])
                     );
                 }
             }
             else {
                 $this->response->getBody()->write(
-                    $this->twig->render('Login.twig', ['message' => 'Vous devez renseigner les deux champs!'])
+                    $this->twig->render('Login.twig', ['errorMessage' => 'Vous devez renseigner les deux champs!'])
                 );
             }
         }

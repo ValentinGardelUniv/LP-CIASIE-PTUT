@@ -21,9 +21,7 @@ class ViewLoginAction extends Action
     protected function action(): Response
     {
         if (isset($_SESSION['user'])) {
-            $this->response->getBody()->write(
-                $this->twig->render('Home.twig', array())
-            );
+            return $this->response->withHeader('location', 'home');
         } else {
             $this->response->getBody()->write(
                 $this->twig->render('Login.twig', array())
