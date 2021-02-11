@@ -23,12 +23,28 @@ $capsule->setAsGlobal();
 // Setup the Eloquent ORM.
 $capsule->bootEloquent();
 
-/*
-Capsule::schema()->create('user', function ($table) {
-    $table->increments('id');
+Capsule::dropIfExists('users');
+Capsule::schema()->create('users', function ($table) {
+    $table->increments('id')->primary();
+    $table->boolean('teacher')->default(false);
     $table->string('identifiant')->unique();
     $table->string('email')->unique();
     $table->string('password');
     $table->timestamps();
 });
-*/
+
+Capsule::dropIfExists('exercises');
+Capsule::schema()->create('exercises', function ($table) {
+    $table->increments('id')->primary();
+    $table->string('title');
+    $table->string('description');
+    $table->string('enonce');
+    $table->integer('owner_id');
+    $table->foreign('owner_id')->references('id')->on('users')->onDelete('cascade');
+});
+
+Capsule::dropIfExists('groups');
+Capsule::schema()->create('groups', function ($table) {
+    $table->increments('id')->primary();
+    $table->foreign('owner_id')->references('id')->on('users')->onDelete('cascade');
+});
